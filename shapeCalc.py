@@ -1,203 +1,138 @@
-def chooseShapeToCalculate():
-    if question == "1":
-        square(aorp)
-    elif question == "2":
-        rectangle(aorp)
-    elif question == "3":
-        circle(aorp)
-    elif question == "4":
-        cone(aorv)
-    elif question == "5":
-        triangle(aorp)
-    elif question == "6":
-        cube(aorv)
-    elif question == "7":
-        cuboid(aorv)
-    elif question == "8":
-        cylinder(aorv)
-    elif question == "9":
-        sphere(aorv)
-    elif question == "10":
-        squarePyramid(aorv)  
-    else: 
-        print("Sorry. This shape doesn't exist")
-
-    calc = str(input("Type y to continue, and other keys to quit."))
-    return calc 
+from termcolor import colored
 
 def spacing():
-    print("\n")
+    print("\n" + "-" * 60 + "\n")
 
-def tryagain():
-    print("please type again")
+def header(title):
+    print(colored("=" * 60, "cyan"))
+    print(colored(title.center(60), "cyan", attrs=["bold"]))
+    print(colored("=" * 60, "cyan"))
 
-def inputQ(length,shape):
-    size_question = float(input("Please enter the {} {} {} {}".format( length,"of the",shape,": ")))
-    return size_question
+def inputQ(length, shape):
+    return float(input(f"→ Enter the {length} of the {shape}: "))
 
-def checkForPerimeter(aorp):
-    aorp = str(input("area or perimeter? :"))
-    while aorp != "area" and aorp != "perimeter":
-        tryagain()
-        aorp = str(input("area or perimeter? :"))
-        return aorp
-    return aorp
-
-def checkForVolume(aorv):
-    aorv = str(input("area or volume? :"))
-    while aorv != "area" and aorv != "volume":
-        tryagain()
-        aorv = str(input("area or volume? :"))
-        return aorv
-    return aorv
-
-def square(aorp):
-    aorp = checkForPerimeter(aorp)
-    length = inputQ("length","square")
-    if aorp == "area":
-        s_area = length * length
-        print("The area of the square is ",s_area)
-    elif aorp == "perimeter":
-        s_perimeter = 4 * length  
-        print("The perimeter of the square is ",s_perimeter)
-
-def cone(aorv):
-    aorv = checkForVolume(aorv)
-    rad_length = inputQ("radius","cone")   
-    if aorv == "area":
-        sla_length = inputQ("slant","cone")
-        spacing()
-        sa_cone = 3.142*rad_length*2 + 3.142*rad_length*sla_length
-        print("The surface area of the cone is ",sa_cone)
-    elif aorv == "volume":
-        height = inputQ("height","cone")
-        spacing()
-        v_cone = (1/3)*3.142*rad_length**2*height
-        print("The volume of the cone is ",v_cone)
-
-def rectangle(aorp):
-    aorp = checkForPerimeter(aorp)
-    rec_length = inputQ("length","rectangle")
-    rec_width = inputQ("width","rectangle")
-    if aorp == "area":
-        area_rec = rec_length * rec_width
-        print("The area of the rectangle is ",area_rec)
-
-    elif aorp == "perimeter":
-        perimeter_rec = 2 * (rec_length + rec_width)
-        print("The perimeter of the rectangle is ",perimeter_rec)
- 
-def circle(aorp):
-    aorp = checkForPerimeter(aorp)
-    circ_length = inputQ("radius","circle")
-    if aorp == "area":
-        area_circ = 3.142 * circ_length * circ_length
-        print("The area of the circle is ",area_circ)
-    elif aorp == "perimeter":
-        perimeter_circ = 2 * 3.142 * circ_length
-        print("The perimeter of the circle is ",perimeter_circ)
-
-def triangle(aorp):
-    aorp = checkForPerimeter(aorp)
-    tri_length = inputQ("length","triangle")
-    if aorp == "area":
-        area_tri = 0.5 * tri_length ** 2
-        print("The area of the triangle is ",area_tri)
-
-    elif aorp == "perimeter":
-        perimeter_tri = 3 * tri_length
-        print("The perimeter of the triangle is ",perimeter_tri)
-
-def cube(aorv):
-    aorv = checkForVolume(aorv)
-    cub_length = inputQ("length","cube")
-    if aorv == "area":
-        cub_area = 6 * cub_length ** 2
-        print("The area of the  is cube",cub_area)
-
-    elif aorv == "volume":
-        vol_cub = cub_length ** 3
-        print("The volume of the cube is ",vol_cub)
-
-def cuboid(aorv):
-    aorv = checkForVolume(aorv)
-    cubo_length = inputQ("length","cuboid")                             
-    cubo_width = inputQ("width","cuboid")
-    cubo_height = inputQ("height","cuboid")
-
-    if aorv == "area":
-        cubo_area = 2 * (cubo_length * cubo_width + cubo_length * cubo_height + cubo_height * cubo_width)
-        print("The area of the cuboid is ",cubo_area)
-
-    elif aorv == "volume":
-        cubo_vol = cubo_length * cubo_width * cubo_height 
-        print("The volume of the circle is ",cubo_vol)
-
-def cylinder(aorv):
-    aorv = checkForVolume(aorv)
-    rad_length = inputQ("radius","cylinder")
+def calculations(shape_number):
     spacing()
-    cy_h = inputQ("height","cylinder")
-    spacing()
-                
-    if aorv == "area":
-        sa_cy = 2 * 3.142 * rad_length ** 2 + 2 * 3.142 * rad_length * rad_h
-        print("The surface area of the cylinder is ",sa_cy)
-
-    elif aorv == "volume":
-        v_cone = (1/3)*3.142*rad_length**2*height
-        print("The volume of the cone is ",v_cone)
-
-def sphere(aorv):
-    aorv = checkForVolume(aorv)
-    rad_length = inputQ("radius","sphere")
-    spacing()
-                
-    if aorv == "area":
-        sa_sp = 4 * 3.142 * rad_length ** 2
-        print("The surface area of the cone is ",sa_sp)
-
-    elif aorv == "volume":
-        v_sp = (4/3) * 3.142 * rad_length ** 3
-        print("The volume of the cone is ",v_sp)
-
-def squarePyramid(aorv):
-    aorv = checkForVolume(aorv)
-    base_length = inputQ("base_length","square pyramid")
-    if aorv == "area":
-        slant_length = inputQ("slant","square pyramid")
-        spacing()
-        sa_sqp = (base_length ** 2) + (2 * base_length * slant_length)
-        print("The surface area of the cone is ",sa_sqp)
-
-    elif aorv == "volume":
-        height_length = inputQ("height","square pyramid")
-        spacing()
-        v_sqp = (base_length ** 2) * (height_length  / 3)
-        print("The volume of the cone is ",v_sqp)
-
-#main
-print("="*25," Welcome to the shape calculator","="*25)
-
-calc,aorp,aorv = "y","0","0"
-
-while calc == "y":
-    question = str(input("""Please enter the number associated with the shape you want to calculate*
-    1.) square
-    2.) rectangle 
-    3.) circle
-    4.) cone
-    5.) triangle
-    6.) cube
-    7.) cuboid
-    8.) cylinder 
-    9.) sphere
-    10.) square pyramid 
-        
-Enter a shape number: """))
-
-    calc = chooseShapeToCalculate()
+    header("CALCULATION RESULT")
     
-else:
-    print("thanks for using.")
+    unit = input(colored("🔧 Enter the unit (e.g., cm, m, in): ", "magenta"))
+    print()
+
+    def u(x): return f"{x} {unit}"  # normal
+    def u2(x): return f"{x} {unit}²"
+    def u3(x): return f"{x} {unit}³"
+
+    if shape_number == "1":  # Square
+        side = inputQ("side", "square")
+        area = side ** 2
+        perimeter = 4 * side
+        print(colored("[Square]", "yellow"))
+        print(colored(f"  Area      = side × side       = {side} × {side}       = {u2(area)}", "blue"))
+        print(colored(f"  Perimeter = 4 × side          = 4 × {side}           = {u(perimeter)}", "blue"))
+
+    elif shape_number == "2":  # Rectangle
+        length = inputQ("length", "rectangle")
+        width = inputQ("width", "rectangle")
+        area = length * width
+        perimeter = 2 * (length + width)
+        print(colored("[Rectangle]", "yellow"))
+        print(colored(f"  Area      = length × width    = {length} × {width}    = {u2(area)}", "blue"))
+        print(colored(f"  Perimeter = 2 × (l + w)       = 2 × ({length} + {width}) = {u(perimeter)}", "blue"))
+
+    elif shape_number == "3":  # Circle
+        radius = inputQ("radius", "circle")
+        area = 3.142 * radius ** 2
+        circumference = 2 * 3.142 * radius
+        print(colored("[Circle]", "yellow"))
+        print(colored(f"  Area          = π × r²         = 3.142 × {radius}²       = {u2(area)}", "blue"))
+        print(colored(f"  Circumference = 2 × π × r     = 2 × 3.142 × {radius}   = {u(circumference)}", "blue"))
+
+    elif shape_number == "4":  # Cone
+        radius = inputQ("radius", "cone")
+        slant = inputQ("slant height", "cone")
+        height = inputQ("height", "cone")
+        surface_area = 3.142 * radius ** 2 + 3.142 * radius * slant
+        volume = (1 / 3) * 3.142 * radius ** 2 * height
+        print(colored("[Cone]", "yellow"))
+        print(colored(f"  Surface Area = πr² + πrl     = 3.142 × {radius}² + 3.142 × {radius} × {slant} = {u2(surface_area)}", "blue"))
+        print(colored(f"  Volume       = (1/3)πr²h     = 1/3 × 3.142 × {radius}² × {height} = {u3(volume)}", "blue"))
+
+    elif shape_number == "5":  # Triangle
+        side = inputQ("side length", "triangle")
+        area = 0.5 * side ** 2
+        perimeter = 3 * side
+        print(colored("[Triangle (Approx)]", "yellow"))
+        print(colored(f"  Area      ≈ 0.5 × side²     = 0.5 × {side}²       = {u2(area)}", "blue"))
+        print(colored(f"  Perimeter = 3 × side        = 3 × {side}         = {u(perimeter)}", "blue"))
+
+    elif shape_number == "6":  # Cube
+        side = inputQ("side length", "cube")
+        surface_area = 6 * side ** 2
+        volume = side ** 3
+        print(colored("[Cube]", "yellow"))
+        print(colored(f"  Surface Area = 6 × side²     = 6 × {side}²         = {u2(surface_area)}", "blue"))
+        print(colored(f"  Volume       = side³         = {side}³             = {u3(volume)}", "blue"))
+
+    elif shape_number == "7":  # Cuboid
+        l = inputQ("length", "cuboid")
+        w = inputQ("width", "cuboid")
+        h = inputQ("height", "cuboid")
+        surface_area = 2 * (l*w + l*h + w*h)
+        volume = l * w * h
+        print(colored("[Cuboid]", "yellow"))
+        print(colored(f"  Surface Area = 2(lw + lh + wh) = 2({l}×{w} + {l}×{h} + {w}×{h}) = {u2(surface_area)}", "blue"))
+        print(colored(f"  Volume       = l × w × h       = {l} × {w} × {h} = {u3(volume)}", "blue"))
+
+    elif shape_number == "8":  # Cylinder
+        radius = inputQ("radius", "cylinder")
+        height = inputQ("height", "cylinder")
+        surface_area = 2 * 3.142 * radius ** 2 + 2 * 3.142 * radius * height
+        volume = 3.142 * radius ** 2 * height
+        print(colored("[Cylinder]", "yellow"))
+        print(colored(f"  Surface Area = 2πr² + 2πrh    = 2×3.142×{radius}² + 2×3.142×{radius}×{height} = {u2(surface_area)}", "blue"))
+        print(colored(f"  Volume       = πr²h           = 3.142 × {radius}² × {height} = {u3(volume)}", "blue"))
+
+    elif shape_number == "9":  # Sphere
+        radius = inputQ("radius", "sphere")
+        surface_area = 4 * 3.142 * radius ** 2
+        volume = (4 / 3) * 3.142 * radius ** 3
+        print(colored("[Sphere]", "yellow"))
+        print(colored(f"  Surface Area = 4πr²           = 4 × 3.142 × {radius}²       = {u2(surface_area)}", "blue"))
+        print(colored(f"  Volume       = (4/3)πr³       = 4/3 × 3.142 × {radius}³     = {u3(volume)}", "blue"))
+
+    elif shape_number == "10":  # Square Pyramid
+        base = inputQ("base length", "square pyramid")
+        slant = inputQ("slant height", "square pyramid")
+        height = inputQ("height", "square pyramid")
+        surface_area = base ** 2 + 2 * base * slant
+        volume = (base ** 2 * height) / 3
+        print(colored("[Square Pyramid]", "yellow"))
+        print(colored(f"  Surface Area = b² + 2bl       = {base}² + 2×{base}×{slant} = {u2(surface_area)}", "blue"))
+        print(colored(f"  Volume       = (b²×h)/3       = ({base}²×{height})/3       = {u3(volume)}", "blue"))
+
+    else:
+        print(colored("⚠️ Invalid shape selection.", "red"))
+
+    print()
+    print(colored("✅ Calculation complete!", "green", attrs=["bold"]))
+    spacing()
+
+# ========== Main Program ==========
+header("WELCOME TO THE SHAPE CALCULATOR")
+
+while True:
+    print(colored("\nChoose a shape to calculate:", "cyan", attrs=["bold"]))
+    print("  1. Square         6. Cube")
+    print("  2. Rectangle      7. Cuboid")
+    print("  3. Circle         8. Cylinder")
+    print("  4. Cone           9. Sphere")
+    print("  5. Triangle       10. Square Pyramid")
+
+    shape_number = input(colored("✏️  Enter shape number (or type 'exit' to quit): ", "magenta")).strip()
+
+    if shape_number.lower() == "exit":
+        print(colored("\n🎉 Thank you for using the Shape Calculator. Goodbye!", "green"))
+        break
+
+    calculations(shape_number)
 
